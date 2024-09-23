@@ -1,0 +1,26 @@
+﻿@model IEnumerable<BlogApp3.Models.Blog>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Ng Long Nhật - BlogApp Lab</h1>
+    <p>Content Created by Ng Long Nhật</p>
+</div>
+
+<div class="row">
+    @foreach (var blog in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@blog.Title</h5>
+                    <p class="card-text">@blog.Content.Substring(0, Math.Min(100, blog.Content.Length))...</p>
+                    <p class="card-text"><small class="text-muted">Posted on @blog.CreatedAt.ToLocalTime().ToString("MMM dd, yyyy")</small></p>
+                    <a asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
